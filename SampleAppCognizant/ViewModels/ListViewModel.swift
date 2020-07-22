@@ -26,13 +26,19 @@ class ListViewModel: ListViewModelProtocol {
     var errorMessage: Observable<String?> = Observable(nil)
     var isLoading: Observable<Bool> = Observable(false)
     
+    let apiManager: ApiManager
     
-    init() {
-        
+    init(_apiManager: ApiManager) {
+        apiManager = _apiManager
     }
     
     
     func getListItems() {
+        apiManager.getListData(completion: {(items, title) -> Void in
+            print(title, items)
+        }, onError: { err -> Void in 
+            self.setError("No Data Available")
+        })
         
     }
     

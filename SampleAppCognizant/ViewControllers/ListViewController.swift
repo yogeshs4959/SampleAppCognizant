@@ -18,14 +18,14 @@ class ListViewController: UIViewController {
             }
         }
     }
-    
     var navTitle:String? {
         didSet {
             setupNavigationBar(title: navTitle)
         }
     }
-    
     var listTableView: UITableView!
+    
+    var viewModel:ListViewModelProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,7 @@ class ListViewController: UIViewController {
     func setup() {
         setupNavigationBar(title: nil)
         setupTableView()
+        viewModel?.getListItems()
     }
     
     func setupNavigationBar(title:String?) {
