@@ -35,7 +35,9 @@ class ListViewModel: ListViewModelProtocol {
     
     func getListItems() {
         apiManager.getListData(completion: {(items, title) -> Void in
-            print(title, items)
+            self.listItems.value = items
+            self.navTitle.value = title
+            
         }, onError: { err -> Void in 
             self.setError("No Data Available")
         })

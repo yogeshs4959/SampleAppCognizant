@@ -14,16 +14,28 @@ class ListViewController: UIViewController {
     var listItems = [Item]() {
         didSet {
             DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
                 self.listTableView.reloadData()
             }
         }
     }
     var navTitle:String? {
         didSet {
-            setupNavigationBar(title: navTitle)
+            DispatchQueue.main.async {
+                self.setupNavigationBar(title: self.navTitle)
+            }
         }
     }
     var listTableView: UITableView!
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(ListViewController.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        return refreshControl
+    }()
     
     var viewModel:ListViewModelProtocol?
 
@@ -35,11 +47,17 @@ class ListViewController: UIViewController {
     func setup() {
         setupNavigationBar(title: nil)
         setupTableView()
+        viewModel?.listItems.bind({items in
+            self.listItems = items
+        })
+        viewModel?.navTitle.bind({ title in
+            self.navTitle = title
+        })
         viewModel?.getListItems()
     }
     
     func setupNavigationBar(title:String?) {
-        
+        self.title = title
     }
     
     func setupTableView() {
@@ -51,10 +69,18 @@ class ListViewController: UIViewController {
         listTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         listTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         listTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        listTableView.register(ItemTableViewCell.self, forCellReuseIdentifier: "itemCell")
         
         listTableView.delegate = self
         listTableView.dataSource = self
         listTableView.tableFooterView = UIView()
+        listTableView.estimatedRowHeight = 120.0
+        listTableView.rowHeight = UITableView.automaticDimension
+        listTableView.addSubview(refreshControl)
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        viewModel?.getListItems()
     }
 
 }
@@ -65,12 +91,9 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         return listItems.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = UITableViewCell()
+        let cell:ItemTableViewCell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
+        cell.item = listItems[indexPath.row]
         return cell
     }
     
