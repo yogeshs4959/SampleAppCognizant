@@ -22,7 +22,7 @@ class ItemTableViewCell: UITableViewCell {
     var descriptionText: UILabel!
     var item: Item? {
         didSet {
-            let imageUrl = URL(string: item?.imageUrl ?? "")
+            itemImage.load(urlString: item?.imageUrl ?? "", defaultImage: "imagePlaceholder")
             titleText.text = item?.title
             descriptionText.text = item?.description
         }
@@ -39,7 +39,6 @@ class ItemTableViewCell: UITableViewCell {
         itemImage.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
         itemImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
         itemImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        itemImage.backgroundColor = UIColor.blue
         
         titleText = UILabel()
         contentView.addSubview(titleText)

@@ -19,6 +19,12 @@
 		9535D0D624C8A63D002D5CC9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9535D0D524C8A63D002D5CC9 /* NetworkManager.swift */; };
 		9535D0D824C8A658002D5CC9 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9535D0D724C8A658002D5CC9 /* ApiManager.swift */; };
 		9535D0DA24C8D811002D5CC9 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9535D0D924C8D811002D5CC9 /* ItemTableViewCell.swift */; };
+		95B366A324C9661E00729BF6 /* NetworkManagerAndAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B366A224C9661E00729BF6 /* NetworkManagerAndAPITests.swift */; };
+		95B366A524C96A1100729BF6 /* MockNetworkManagerAndAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B366A424C96A1000729BF6 /* MockNetworkManagerAndAPITests.swift */; };
+		95B366A824C96D6900729BF6 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B366A724C96D6900729BF6 /* MockNetworkManager.swift */; };
+		95B366AA24C96D7F00729BF6 /* MockApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B366A924C96D7F00729BF6 /* MockApiManager.swift */; };
+		95B366AC24C97FEF00729BF6 /* ViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B366AB24C97FEF00729BF6 /* ViewModelTest.swift */; };
+		95C785AD24C8DFF00098A359 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C785AC24C8DFF00098A359 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		9535D0D524C8A63D002D5CC9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9535D0D724C8A658002D5CC9 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		9535D0D924C8D811002D5CC9 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		95B366A224C9661E00729BF6 /* NetworkManagerAndAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerAndAPITests.swift; sourceTree = "<group>"; };
+		95B366A424C96A1000729BF6 /* MockNetworkManagerAndAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManagerAndAPITests.swift; sourceTree = "<group>"; };
+		95B366A724C96D6900729BF6 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		95B366A924C96D7F00729BF6 /* MockApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiManager.swift; sourceTree = "<group>"; };
+		95B366AB24C97FEF00729BF6 /* ViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTest.swift; sourceTree = "<group>"; };
+		95C785AC24C8DFF00098A359 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +136,12 @@
 		9531093824C767F500DC1D21 /* SampleAppCognizantTests */ = {
 			isa = PBXGroup;
 			children = (
+				95B366A624C96D4300729BF6 /* Mocks */,
 				9531093924C767F500DC1D21 /* SampleAppCognizantTests.swift */,
 				9531093B24C767F500DC1D21 /* Info.plist */,
+				95B366A224C9661E00729BF6 /* NetworkManagerAndAPITests.swift */,
+				95B366A424C96A1000729BF6 /* MockNetworkManagerAndAPITests.swift */,
+				95B366AB24C97FEF00729BF6 /* ViewModelTest.swift */,
 			);
 			path = SampleAppCognizantTests;
 			sourceTree = "<group>";
@@ -168,6 +184,7 @@
 			children = (
 				9535D0D524C8A63D002D5CC9 /* NetworkManager.swift */,
 				9535D0D724C8A658002D5CC9 /* ApiManager.swift */,
+				95C785AC24C8DFF00098A359 /* Extensions.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -178,6 +195,15 @@
 				9531092624C767F200DC1D21 /* ListViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		95B366A624C96D4300729BF6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				95B366A724C96D6900729BF6 /* MockNetworkManager.swift */,
+				95B366A924C96D7F00729BF6 /* MockApiManager.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9535D0D624C8A63D002D5CC9 /* NetworkManager.swift in Sources */,
+				95C785AD24C8DFF00098A359 /* Extensions.swift in Sources */,
 				9535D0D124C83D68002D5CC9 /* Observable.swift in Sources */,
 				9535D0D324C843C3002D5CC9 /* ListJsonModel.swift in Sources */,
 				9535D0D824C8A658002D5CC9 /* ApiManager.swift in Sources */,
@@ -325,7 +352,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B366AC24C97FEF00729BF6 /* ViewModelTest.swift in Sources */,
+				95B366AA24C96D7F00729BF6 /* MockApiManager.swift in Sources */,
+				95B366A524C96A1100729BF6 /* MockNetworkManagerAndAPITests.swift in Sources */,
 				9531093A24C767F500DC1D21 /* SampleAppCognizantTests.swift in Sources */,
+				95B366A824C96D6900729BF6 /* MockNetworkManager.swift in Sources */,
+				95B366A324C9661E00729BF6 /* NetworkManagerAndAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

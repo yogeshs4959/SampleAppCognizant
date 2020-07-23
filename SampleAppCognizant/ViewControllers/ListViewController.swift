@@ -13,16 +13,16 @@ class ListViewController: UIViewController {
     
     var listItems = [Item]() {
         didSet {
-            DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
-                self.listTableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.refreshControl.endRefreshing()
+                self?.listTableView.reloadData()
             }
         }
     }
     var navTitle:String? {
         didSet {
-            DispatchQueue.main.async {
-                self.setupNavigationBar(title: self.navTitle)
+            DispatchQueue.main.async { [weak self] in
+                self?.setupNavigationBar(title: self?.navTitle)
             }
         }
     }
@@ -69,10 +69,11 @@ class ListViewController: UIViewController {
         listTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         listTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         listTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        listTableView.register(ItemTableViewCell.self, forCellReuseIdentifier: "itemCell")
+        listTableView.register(ItemTableViewCell.self, forCellReuseIdentifier: "ItemTableViewCell")
         
         listTableView.delegate = self
         listTableView.dataSource = self
+        listTableView.allowsSelection = false
         listTableView.tableFooterView = UIView()
         listTableView.estimatedRowHeight = 120.0
         listTableView.rowHeight = UITableView.automaticDimension
@@ -92,7 +93,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:ItemTableViewCell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
+        let cell:ItemTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
         cell.item = listItems[indexPath.row]
         return cell
     }
